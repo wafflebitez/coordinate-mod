@@ -56,7 +56,10 @@ java {
 }
 
 jar {
-	from("LICENSE") {
+	archiveBaseName.set(project.name)
+	archiveVersion.set(project.version)
+	archiveClassifier.set('')
+	from('LICENSE') {
 		rename { "${it}_${project.base.archivesName.get()}"}
 	}
 }

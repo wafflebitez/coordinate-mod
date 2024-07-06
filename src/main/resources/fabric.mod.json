@@ -16,6 +16,9 @@
 	"entrypoints": {
 		"main": [
 			"net.wafflebitez.coordinatemod.CoordinateMod"
+		],
+		"client": [
+			"net.wafflebitez.coordinatemod.CoordinateModClient"
 		]
 	},
 	"depends": {
