@@ -14,8 +14,8 @@ Once installed, the mod will automatically display your current coordinates on t
 
 ## Compatibility
 
-- Fabric 1.21 (on the `master` branch)
-- Forge 1.20.6 (on the `forge-1.20.6` branch)
+- Fabric 1.21 (on the `fabric` branch)
+- Forge 1.20.6 (on the `forge` branch)
 
 ## Contributing
 
