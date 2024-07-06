@@ -2,6 +2,7 @@
 
 HUD Coordinates is a client-side mod for Minecraft that displays your current coordinates directly on the HUD, offering a clean and straightforward alternative to the F3 debug screen.
 
+
 ## Installation
 
 1. Download the latest version of the mod from the [Releases](https://github.com/wafflebitez/coordinate-mod/releases) page.
@@ -15,7 +16,7 @@ Once installed, the mod will automatically display your current coordinates on t
 ## Compatibility
 
 - Fabric 1.21 (on the `fabric` branch)
-- Forge 1.20.6 (on the `forge` branch)
+- Forge 1.21, 1.20.6 (on the `forge` branch)
 
 ## Contributing
 
