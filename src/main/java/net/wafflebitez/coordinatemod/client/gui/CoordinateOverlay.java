@@ -1,23 +1,23 @@
 package net.wafflebitez.coordinatemod.client.gui;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.client.event.CustomizeGuiOverlayEvent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.client.Minecraft;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.render.RenderTickCounter;
+import net.minecraft.entity.player.PlayerEntity;
 
-@Mod.EventBusSubscriber(modid = "coordinate_mod", value = {Dist.CLIENT})
-public class CoordinateOverlay {
+@Environment(EnvType.CLIENT)
+public class CoordinateOverlay implements HudRenderCallback {
 
-    @SubscribeEvent(priority = EventPriority.NORMAL)
-    public static void onCustomizeGuiOverlay(CustomizeGuiOverlayEvent event) {
-        int h = event.getWindow().getGuiScaledHeight();
-
-        Player player = Minecraft.getInstance().player;
+    @Override
+    public void onHudRender(DrawContext drawContext, RenderTickCounter tickCounter) {
+        MinecraftClient client = MinecraftClient.getInstance();
+        PlayerEntity player = client.player;
 
         if (player != null) {
+            int h = client.getWindow().getScaledHeight();
             int x = (int) Math.floor(player.getX());
             int y = (int) Math.floor(player.getY());
             int z = (int) Math.floor(player.getZ());
@@ -29,24 +29,11 @@ public class CoordinateOverlay {
             // this just makes it look nice
             int shadowOffset = 1;
             int offset = 5;
-            int textWidth = Minecraft.getInstance().font.width(coordinates);
-            int textHeight = Minecraft.getInstance().font.lineHeight;
+            int textWidth = client.textRenderer.getWidth(coordinates);
+            int textHeight = client.textRenderer.fontHeight;
 
-            event.getGuiGraphics().fill(
-                    0,
-                    posY - padding,
-                    offset + textWidth + padding,
-                    posY + textHeight + padding - shadowOffset,
-                    0x90000000
-            );
-            event.getGuiGraphics().drawString(
-                    Minecraft.getInstance().font,
-                    coordinates,
-                    offset,
-                    posY,
-                    0xFFFFFF,
-                    true
-            );
+            drawContext.fill(0, posY - padding, offset + textWidth + padding, posY + textHeight + padding - shadowOffset, 0x90000000);
+            drawContext.drawTextWithShadow(client.textRenderer, coordinates, offset, posY, 0xFFFFFF);
         }
     }
 }

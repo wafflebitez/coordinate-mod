@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "coordinate-mod",
+	"version": "${version}",
+	"name": "HUD Coordinates",
+	"description": "Displays coordinates on the HUD similarly to that of Bedrock edition.",
+	"authors": [
+		"wafflebitez"
+	],
+	"contact": {
+		"sources": "https://github.com/wafflebitez/coordinate-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/coordinate-mod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.wafflebitez.coordinatemod.CoordinateMod"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

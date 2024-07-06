@@ -1,13 +1,15 @@
 package net.wafflebitez.coordinatemod;
 
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
+import net.fabricmc.api.ModInitializer;
 
-@Mod("coordinate_mod")
-public class CoordinateMod {
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.wafflebitez.coordinatemod.client.gui.CoordinateOverlay;
 
-    public CoordinateMod() {
-        MinecraftForge.EVENT_BUS.register(this);
-    }
+public class CoordinateMod implements ModInitializer {
+
+	@Override
+	public void onInitialize() {
+		HudRenderCallback.EVENT.register(new CoordinateOverlay());
+	}
 
 }
