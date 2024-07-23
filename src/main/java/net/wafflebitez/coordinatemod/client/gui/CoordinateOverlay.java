@@ -7,10 +7,34 @@ import net.minecraftforge.client.event.CustomizeGuiOverlayEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.client.Minecraft;
+import net.wafflebitez.coordinatemod.client.config.Config;
+
+import java.util.HashMap;
 
 @Mod.EventBusSubscriber(modid = "coordinate_mod", value = {Dist.CLIENT})
 public class CoordinateOverlay {
 
+    public static final HashMap<String, Integer> COLORS = new HashMap<String, Integer>() {{
+        put("white", 0xFFFFFF);
+        put("black", 0x000000);
+        put("gray", 0x808080);
+        put("red", 0xFF0000);
+        put("green", 0x00FF00);
+        put("blue", 0x0000FF);
+        put("yellow", 0xFFFF00);
+        put("purple", 0xFF00FF);
+        put("cyan", 0x00FFFF);
+        put("orange", 0xFFA500);
+        put("brown", 0xA52A2A);
+        put("lime", 0x32CD32);
+        put("pink", 0xFFC0CB);
+        put("light_gray", 0xD3D3D3);
+        put("light_blue", 0xADD8E6);
+        put("light_green", 0x90EE90);
+    }};
+
+    public static int fontColorHex;
+    
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void onCustomizeGuiOverlay(CustomizeGuiOverlayEvent event) {
         int h = event.getWindow().getGuiScaledHeight();
@@ -31,6 +55,7 @@ public class CoordinateOverlay {
             int offset = 5;
             int textWidth = Minecraft.getInstance().font.width(coordinates);
             int textHeight = Minecraft.getInstance().font.lineHeight;
+            fontColorHex = COLORS.get(Config.FONT_COLOR.get());
 
             event.getGuiGraphics().fill(
                     0,
@@ -44,7 +69,7 @@ public class CoordinateOverlay {
                     coordinates,
                     offset,
                     posY,
-                    0xFFFFFF,
+                    fontColorHex,
                     true
             );
         }
